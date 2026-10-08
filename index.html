@@ -1,1 +1,99 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ProjectHub | Build something worth showing</title><meta name="description" content="Websites, full-stack applications and custom software projects for CS, IT and engineering students."><link rel="canonical" href="https://YOUR-DOMAIN.com/"><meta property="og:title" content="ProjectHub | Build something worth showing"><meta property="og:description" content="Practical websites, full-stack applications and custom software for students."><meta property="og:image" content="assets/social-preview.svg"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image"><link rel="manifest" href="site.webmanifest"><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="css/style.css"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"ProjectHub","url":"https://YOUR-DOMAIN.com/","description":"Student-focused software studio providing websites, full-stack applications and custom software projects."},{"@type":"WebSite","name":"ProjectHub","url":"https://YOUR-DOMAIN.com/"},{"@type":"WebPage","name":"ProjectHub | Build something worth showing","url":"https://YOUR-DOMAIN.com/"}]}</script></head><body data-page="home"><div id="site-header"></div><main><section class="hero"><div class="container hero-grid"><div class="reveal"><span class="eyebrow">For CS / IT & Engineering Students</span><h1>Build something<br><em>worth showing.</em></h1><p>Websites, full-stack applications and custom software built for college students.</p><div class="button-row"><a class="button button-primary" href="projects.html">Explore Projects</a><a class="button button-outline" href="#" id="build-idea">Build My Idea</a></div></div><div class="hero-art reveal delay-1"><img src="assets/projects/dashboard.svg" alt="Software analytics dashboard interface"></div></div></section><section class="section"><div class="container"><div class="section-header"><div><span class="eyebrow">Start with something practical</span><h2>Projects that feel like real software.</h2><p class="section-intro">Browse working concepts, compare technologies, and discuss the right scope for your requirement.</p></div><a class="button button-outline" href="projects.html">View all projects →</a></div><div class="cards" id="featured-projects"></div></div></section><section class="section dark-band"><div class="container"><div class="section-header"><div><span class="eyebrow">Why ProjectHub</span><h2>Clear scope. Practical support.</h2><p class="section-intro">Choose a ready-to-use project or bring an idea. We keep the conversation focused on what you need to build and understand.</p></div></div><div class="feature-grid"><div class="feature"><div class="feature-icon">01</div><h3>Built to be understood</h3><p>Project structure and walkthrough support help you work with the software, not just receive a zip file.</p></div><div class="feature"><div class="feature-icon">02</div><h3>Modern foundations</h3><p>Explore responsive websites, full-stack applications, dashboards and practical technology choices.</p></div><div class="feature"><div class="feature-icon">03</div><h3>Talk to a real person</h3><p>Discuss scope, customization and next steps directly through WhatsApp before you decide.</p></div></div></div></section><section class="section"><div class="container"><div class="cta"><div><h2>Have a different idea?</h2><p>Tell us what you want to build and get a clear conversation started.</p></div><a class="button button-dark" href="#" id="build-idea-bottom">Build My Idea →</a></div></div></section></main><div id="site-footer"></div><script src="js/config.js"></script><script src="js/projects.js"></script><script src="js/main.js"></script><script>const render=()=>{document.querySelector("#featured-projects").innerHTML=PROJECTS.filter(p=>p.featured).slice(0,3).map(p=>`<article class="project-card"><img class="project-image" src="${p.image}" alt="${p.name} interface preview" loading="lazy"><div class="card-content"><div class="card-top"><h3>${p.name}</h3><span class="badge">Featured</span></div><p>${p.description}</p><div class="tags">${p.technologies.slice(0,3).map(t=>`<span class="tag">${t}</span>`).join("")}</div><div class="card-footer"><strong class="price">${ProjectHub.formatPrice(p.price)}</strong><a href="project.html?id=${p.id}">Details →</a></div></div></article>`).join("")};render();const idea=`Hi ProjectHub 👋\n\nI have an idea for a website/full-stack software project.\n\nI'd like to discuss the requirements and get a quote.\n\nMy idea:`;["build-idea","build-idea-bottom"].forEach(id=>{document.getElementById(id).href=ProjectHub.waUrl(idea);document.getElementById(id).target="_blank";document.getElementById(id).rel="noreferrer"});</script></body></html>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ProjectHub | Build something worth showing</title>
+    <meta name="description"
+        content="Websites, full-stack applications and custom software projects for CS, IT and engineering students.">
+    <link rel="canonical" href="https://projecthub.studio/">
+    <meta property="og:title" content="ProjectHub | Build something worth showing">
+    <meta property="og:description"
+        content="Practical websites, full-stack applications and custom software for students.">
+    <meta property="og:image" content="assets/social-preview.svg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"ProjectHub","url":"https://projecthub.studio/","description":"Student-focused software studio providing websites, full-stack applications and custom software projects."},{"@type":"WebSite","name":"ProjectHub","url":"https://projecthub.studio/"},{"@type":"WebPage","name":"ProjectHub | Build something worth showing","url":"https://projecthub.studio/"}]}</script>
+</head>
+
+<body data-page="home">
+    <div id="site-header"></div>
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="reveal"><span class="eyebrow">For CS / IT & Engineering Students</span>
+                    <h1>Build something<br><em>worth showing.</em></h1>
+                    <p>Websites, full-stack applications and custom software built for college students.</p>
+                    <div class="button-row"><a class="button button-primary" href="projects.html">Explore Projects</a><a
+                            class="button button-outline" href="#" id="build-idea">Build My Idea</a></div>
+                </div>
+                <div class="hero-art reveal delay-1"><img src="assets/projects/dashboard.svg"
+                        alt="Software analytics dashboard interface"></div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div><span class="eyebrow">Start with something practical</span>
+                        <h2>Projects that feel like real software.</h2>
+                        <p class="section-intro">Browse working concepts, compare technologies, and discuss the right
+                            scope for your requirement.</p>
+                    </div><a class="button button-outline" href="projects.html">View all projects →</a>
+                </div>
+                <div class="cards" id="featured-projects"></div>
+            </div>
+        </section>
+        <section class="section dark-band">
+            <div class="container">
+                <div class="section-header">
+                    <div><span class="eyebrow">Why ProjectHub</span>
+                        <h2>Clear scope. Practical support.</h2>
+                        <p class="section-intro">Choose a ready-to-use project or bring an idea. We keep the
+                            conversation focused on what you need to build and understand.</p>
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <div class="feature-icon">01</div>
+                        <h3>Built to be understood</h3>
+                        <p>Project structure and walkthrough support help you work with the software, not just receive a
+                            zip file.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">02</div>
+                        <h3>Modern foundations</h3>
+                        <p>Explore responsive websites, full-stack applications, dashboards and practical technology
+                            choices.</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">03</div>
+                        <h3>Talk to a real person</h3>
+                        <p>Discuss scope, customization and next steps directly through WhatsApp before you decide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="cta">
+                    <div>
+                        <h2>Have a different idea?</h2>
+                        <p>Tell us what you want to build and get a clear conversation started.</p>
+                    </div><a class="button button-dark" href="#" id="build-idea-bottom">Build My Idea →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="site-footer"></div>
+    <script src="js/config.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+    <script>const render = () => { document.querySelector("#featured-projects").innerHTML = PROJECTS.filter(p => p.featured).slice(0, 3).map(p => `<article class="project-card"><img class="project-image" src="${p.image}" alt="${p.name} interface preview" loading="lazy"><div class="card-content"><div class="card-top"><h3>${p.name}</h3><span class="badge">Featured</span></div><p>${p.description}</p><div class="tags">${p.technologies.slice(0, 3).map(t => `<span class="tag">${t}</span>`).join("")}</div><div class="card-footer"><strong class="price">${ProjectHub.formatPrice(p.price)}</strong><a href="project.html?id=${p.id}">Details →</a></div></div></article>`).join("") }; render(); const idea = `Hi ProjectHub 👋\n\nI have an idea for a website/full-stack software project.\n\nI'd like to discuss the requirements and get a quote.\n\nMy idea:`;["build-idea", "build-idea-bottom"].forEach(id => { document.getElementById(id).href = ProjectHub.waUrl(idea); document.getElementById(id).target = "_blank"; document.getElementById(id).rel = "noreferrer" });</script>
+</body>
+
+</html>

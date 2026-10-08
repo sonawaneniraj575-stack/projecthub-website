@@ -40,7 +40,7 @@ This is plain HTML, CSS and JavaScript:
 
 ## SEO updates
 
-Replace `https://YOUR-DOMAIN.com` in the canonical tags, [`sitemap.xml`](./sitemap.xml), and [`robots.txt`](./robots.txt) after the real domain is known. Update the social preview URL if you host the preview image elsewhere. Page titles and descriptions are in each HTML file.
+Replace `https://projecthub.studio` in the canonical tags, [`sitemap.xml`](./sitemap.xml), and [`robots.txt`](./robots.txt) after the real domain is known. Update the social preview URL if you host the preview image elsewhere. Page titles and descriptions are in each HTML file.
 
 ## Notes
 
