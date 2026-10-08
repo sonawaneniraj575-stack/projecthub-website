@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://YOUR-DOMAIN.com/</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/projects.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/services.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/how-it-works.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/about.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/faq.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/contact.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/privacy-policy.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/terms.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/refund-policy.html</loc></url>
-  <url><loc>https://YOUR-DOMAIN.com/disclaimer.html</loc></url>
+
+  <url>
+    <loc>https://projecthub.studio/</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/projects.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/services.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/how-it-works.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/about.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/faq.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/contact.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/privacy-policy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/terms.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/refund-policy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://projecthub.studio/disclaimer.html</loc>
+  </url>
+
 </urlset>
