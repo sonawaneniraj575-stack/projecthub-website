@@ -1,92 +1,238 @@
 /*
-  Project catalogue data lives here. To add or edit a project, change this array only.
-  - id: unique URL-safe value used by project.html?id=...
-  - price: number in INR; technologies, features and faq are arrays of strings
-  - image: replace the matching file in assets/projects/ when you add your own artwork
+  ProjectHub project catalogue.
+  Update this array when adding or editing projects.
+
+  IMPORTANT:
+  - Prices are suggested starting prices in INR.
+  - Confirm prices and deliverables before publishing.
+  - Do not advertise projects as available until they are built.
+  - Image paths below reuse existing assets; replace them with
+    matching artwork when your new project previews are ready.
 */
+
 const PROJECTS = [
   {
-    id: "college-management-system",
-    name: "College Management System",
-    category: "Management",
-    type: "Full Stack",
-    description: "A practical platform for managing students, courses, attendance and reports from one dashboard.",
-    price: 4999,
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js", "PostgreSQL"],
-    features: ["Admin dashboard", "Student management", "Attendance records", "Reports and authentication"],
-    image: "assets/projects/college-management.svg",
+    id: "attendwise-attendance-tracker",
+    name: "AttendWise - Smart Attendance Tracker",
+    category: "Education",
+    type: "Application",
+    description:
+      "Track attendance by subject, calculate eligibility targets, and understand how upcoming classes affect your attendance percentage.",
+    price: 999,
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Chart.js"
+    ],
+    features: [
+      "Subject-wise attendance tracking",
+      "Attendance target calculator",
+      "Classes needed to reach a target",
+      "Visual progress charts",
+      "CSV data export"
+    ],
+    image: "assets/projects/dashboard.svg",
     featured: true,
-    included: ["Source code", "Setup guide", "Project walkthrough", "Agreed scope support"],
-    faq: [{ question: "Can the modules be customized?", answer: "Yes. Discuss the required modules and changes with ProjectHub before delivery." }]
+    included: [
+      "Application source code",
+      "Setup guide",
+      "Sample subjects and attendance data",
+      "Project walkthrough",
+      "Customization guide"
+    ],
+    faq: [
+      {
+        question: "Does the tracker need a backend?",
+        answer:
+          "The starter version can run entirely in the browser and save data locally. Cloud synchronization and multi-user access would require additional development."
+      },
+      {
+        question: "Can I set my own attendance target?",
+        answer:
+          "Yes. Users can configure an attendance target and calculate how future classes affect their percentage."
+      }
+    ]
   },
+
   {
-    id: "shopfront-ecommerce",
-    name: "Shopfront E-Commerce",
-    category: "E-Commerce",
-    type: "Full Stack",
-    description: "A clean shopping experience with product browsing, cart flow and an admin-ready structure.",
-    price: 5999,
-    technologies: ["HTML", "CSS", "JavaScript", "Node.js"],
-    features: ["Product catalogue", "Cart experience", "Order workflow", "Responsive UI"],
-    image: "assets/projects/shopfront.svg",
+    id: "projectpilot-final-year-planner",
+    name: "ProjectPilot - Final-Year Project Planner",
+    category: "Productivity",
+    type: "Application",
+    description:
+      "Organize final-year project milestones, deadlines, report chapters, weekly tasks, and viva preparation in one workspace.",
+    price: 999,
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    features: [
+      "Project milestone planner",
+      "Weekly tasks and deadlines",
+      "Report chapter checklist",
+      "Viva practice question bank",
+      "Progress dashboard",
+      "Printable project summary"
+    ],
+    image: "assets/projects/study-assistant.svg",
     featured: true,
-    included: ["Source code", "Installation notes", "Feature explanation", "Agreed scope support"],
-    faq: [{ question: "Is payment processing included?", answer: "No payment gateway is enabled by default. Requirements can be discussed separately." }]
+    included: [
+      "Application source code",
+      "Installation instructions",
+      "Sample project plan",
+      "Viva preparation examples",
+      "Customization guide"
+    ],
+    faq: [
+      {
+        question: "Is this designed for final-year students?",
+        answer:
+          "Yes. The project is designed around common project planning, documentation, submission, and presentation tasks."
+      },
+      {
+        question: "Does it automatically write project reports?",
+        answer:
+          "No. The initial version helps organize report preparation rather than automatically generating academic work."
+      }
+    ]
   },
+
   {
-    id: "student-portfolio",
-    name: "Student Portfolio Studio",
+    id: "portfolioforge-student-portfolio",
+    name: "PortfolioForge - Student Portfolio Builder",
     category: "Websites",
     type: "Website",
-    description: "A polished portfolio website for presenting skills, projects, resume information and contact details.",
-    price: 2499,
-    technologies: ["HTML", "CSS", "JavaScript"],
-    features: ["Project showcase", "Responsive design", "About and contact sections", "Easy content updates"],
+    description:
+      "Create a personalized portfolio from your education, skills, projects, resume information, and contact details.",
+    price: 999,
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    features: [
+      "Live portfolio preview",
+      "Editable profile and education",
+      "Skills and project sections",
+      "Responsive portfolio themes",
+      "Downloadable HTML output",
+      "Print-friendly portfolio"
+    ],
     image: "assets/projects/portfolio.svg",
-    featured: false,
-    included: ["Responsive source code", "Content setup guide", "Deployment checklist"],
-    faq: [{ question: "Can I use my own content?", answer: "Yes. The page structure can be adapted to your profile and projects." }]
+    featured: true,
+    included: [
+      "Portfolio builder source code",
+      "Portfolio template",
+      "Customization guide",
+      "Export instructions",
+      "Deployment checklist"
+    ],
+    faq: [
+      {
+        question: "Can I publish my portfolio online?",
+        answer:
+          "Yes. The exported portfolio can be deployed to a compatible static hosting service."
+      },
+      {
+        question: "Do I need an AI API key?",
+        answer:
+          "No. The core portfolio creation and export features can work without an external AI service."
+      }
+    ]
   },
+
   {
-    id: "insight-dashboard",
-    name: "Insight Analytics Dashboard",
-    category: "Dashboards",
-    type: "Full Stack",
-    description: "A focused dashboard interface for presenting metrics, trends and operational summaries clearly.",
-    price: 4499,
-    technologies: ["HTML", "CSS", "JavaScript", "Chart.js"],
-    features: ["Metric cards", "Charts and trends", "Responsive tables", "Dashboard navigation"],
+    id: "studentspend-budget-planner",
+    name: "StudentSpend - Student Budget Planner",
+    category: "Finance",
+    type: "Application",
+    description:
+      "Manage everyday spending, monthly budgets, savings goals, and expense categories with a simple student-friendly dashboard.",
+    price: 999,
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Chart.js"
+    ],
+    features: [
+      "Daily expense recording",
+      "Monthly budget limits",
+      "Expense category summaries",
+      "Spending charts",
+      "Savings goal tracking",
+      "CSV expense export"
+    ],
     image: "assets/projects/dashboard.svg",
     featured: false,
-    included: ["Dashboard source code", "Sample data", "Setup documentation"],
-    faq: [{ question: "Can I connect a different data source?", answer: "Data integration depends on the requirement and can be scoped through WhatsApp." }]
+    included: [
+      "Application source code",
+      "Setup instructions",
+      "Sample expense data",
+      "User guide",
+      "Customization guide"
+    ],
+    faq: [
+      {
+        question: "Does the application connect to a bank?",
+        answer:
+          "No. The starter version uses manually entered expenses and does not connect to bank accounts."
+      },
+      {
+        question: "Will my data synchronize across devices?",
+        answer:
+          "The initial version stores data in the browser. Account-based synchronization would require a backend."
+      }
+    ]
   },
+
   {
-    id: "smart-study-assistant",
-    name: "Smart Study Assistant",
-    category: "AI",
-    type: "Application",
-    description: "A study companion concept that organizes notes, tasks and helpful learning prompts in one place.",
-    price: 3999,
-    technologies: ["HTML", "CSS", "JavaScript", "Python"],
-    features: ["Notes workspace", "Task planner", "Searchable resources", "Extensible AI integration"],
-    image: "assets/projects/study-assistant.svg",
+    id: "campusfind-lost-found",
+    name: "CampusFind - Campus Lost & Found",
+    category: "Campus Tools",
+    type: "Full Stack",
+    description:
+      "A campus-focused portal for reporting lost and found belongings, searching listings, and tracking the resolution of reported items.",
+    price: 999,
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "PostgreSQL"
+    ],
+    features: [
+      "Lost and found item listings",
+      "Category and location filters",
+      "Item status tracking",
+      "Claim and resolution workflow",
+      "Moderator dashboard",
+      "Privacy-conscious contact handling"
+    ],
+    image: "assets/projects/college-management.svg",
     featured: false,
-    included: ["Application source code", "Run instructions", "Feature overview"],
-    faq: [{ question: "Is an AI API key included?", answer: "No. Third-party services and credentials must be supplied and configured separately." }]
-  },
-  {
-    id: "custom-project-starter",
-    name: "Custom Project Starter",
-    category: "Custom",
-    type: "Custom",
-    description: "A flexible starting point for a website or software idea that needs a tailored scope.",
-    price: 0,
-    technologies: ["HTML", "CSS", "JavaScript"],
-    features: ["Requirement discussion", "Scope planning", "Technology recommendation", "Custom quote"],
-    image: "assets/projects/custom.svg",
-    featured: false,
-    included: ["Requirement discussion", "Scope estimate", "Agreed deliverables"],
-    faq: [{ question: "How is the price decided?", answer: "ProjectHub reviews the requirements, features and timeline before sharing a quote." }]
+    included: [
+      "Full-stack source code",
+      "Database schema",
+      "Installation guide",
+      "Sample campus listings",
+      "Project walkthrough",
+      "Customization guide"
+    ],
+    faq: [
+      {
+        question: "Can a college customize the portal?",
+        answer:
+          "Yes. Categories, campus information, and listing workflows can be adapted to agreed requirements."
+      },
+      {
+        question: "Does it connect to a real college database?",
+        answer:
+          "No. The initial project uses its own database. Integration with an existing college system would require separate development and authorization."
+      }
+    ]
   }
 ];
