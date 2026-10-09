@@ -1,1 +1,72 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Project details | ProjectHub</title><meta name="description" content="Explore ProjectHub project details, features, technologies and what is included."><link rel="canonical" href="https://projecthub.studio/project.html"><meta property="og:title" content="Project details | ProjectHub"><meta property="og:description" content="Explore project features, technologies and next steps."><meta property="og:image" content="assets/social-preview.svg"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="favicon.ico"><link rel="stylesheet" href="css/style.css"></head><body data-page="projects"><div id="site-header"></div><main id="project-detail"></main><div id="site-footer"></div><script src="js/config.js"></script><script src="js/projects.js"></script><script src="js/main.js"></script><script>const id=new URLSearchParams(location.search).get("id"),p=PROJECTS.find(x=>x.id===id),root=document.querySelector("#project-detail");if(!p){root.innerHTML='<section class="section"><div class="container empty"><h1>Project not found</h1><p>The project may have been removed or the link is incorrect.</p><a class="button button-primary" href="projects.html">Explore Projects</a></div></section>'}else{document.title=`${p.name} | ProjectHub`;document.querySelector('meta[name="description"]').content=p.description;root.innerHTML=`<section class="page-hero"><div class="container"><span class="eyebrow">${p.category} · ${p.type}</span><h1>${p.name}</h1><p>${p.description}</p></div></section><section class="section"><div class="container detail-grid"><div><img class="detail-image" src="${p.image}" alt="${p.name} software interface preview"></div><div class="detail"><span class="tag">${p.type}</span><h1>${p.name}</h1><p class="section-intro">${p.description}</p><div class="price">${ProjectHub.formatPrice(p.price)}</div><div class="button-row"><a class="button button-primary" id="get-project" href="#">Get Project on WhatsApp</a><a class="button button-outline" href="contact.html">Ask a question</a></div><h2>What it includes</h2><ul class="check-list">${p.included.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></section><section class="section"><div class="container detail-grid"><div><span class="eyebrow">Built with</span><h2>Technologies</h2><div class="tags">${p.technologies.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div><div><span class="eyebrow">Inside the project</span><h2>Features</h2><ul class="check-list">${p.features.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></section><section class="section"><div class="container faq-list"><span class="eyebrow">Project questions</span><h2>Before you get started</h2>${p.faq.map(x=>`<details class="faq-item"><summary>${x.question}</summary><p>${x.answer}</p></details>`).join("")}</div></section>`;const get=document.querySelector("#get-project");get.href=ProjectHub.waUrl(ProjectHub.projectMessage(p));get.target="_blank";get.rel="noreferrer";const ld={"@context":"https://schema.org","@type":"Product",name:p.name,description:p.description,image:new URL(p.image,location.href).href,offers:p.price?{"@type":"Offer",price:p.price,priceCurrency:"INR"}:undefined};const script=document.createElement("script");script.type="application/ld+json";script.textContent=JSON.stringify(ld);document.head.appendChild(script)}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Project details | ProjectHub</title>
+    <meta name="description" content="Explore ProjectHub project details, features, technologies and what is included.">
+    <link rel="canonical" href="https://projecthub.studio/project.html">
+    <meta property="og:title" content="Project details | ProjectHub">
+    <meta property="og:description" content="Explore project features, technologies and next steps.">
+    <meta property="og:image" content="assets/social-preview.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="projects">
+    <div id="site-header"></div>
+    <main id="project-detail"></main>
+    <div id="site-footer"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        const root = document.querySelector("#project-detail");
+        const requestedId = new URLSearchParams(location.search).get("id") || "";
+        const normalizedId = requestedId.trim().toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+        const project = PROJECTS.find((item) =>
+            item.id === normalizedId ||
+            item.name.trim().toLowerCase() === requestedId.trim().toLowerCase()
+        );
+
+        const checkIcon = '<svg class="check-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15.5 6.5"></path></svg>';
+        const checkList = (items) => items.map((item) => '<li>' + checkIcon + '<span>' + item + '</span></li>').join("");
+
+        if (!project) {
+            root.innerHTML = '<section class="section"><div class="container empty"><h1>Project not found</h1><p>The project may have been removed or the link is incorrect.</p><a class="button button-primary" href="projects.html">Explore Projects</a></div></section>';
+        } else {
+            document.title = project.name + " | ProjectHub";
+            document.querySelector('meta[name="description"]').content = project.description;
+            document.querySelector('link[rel="canonical"]').href = "https://projecthub.studio/project.html?id=" + project.id;
+
+            root.innerHTML =
+                '<section class="page-hero"><div class="container"><span class="eyebrow">' + project.category + ' · ' + project.type + '</span><h1>' + project.name + '</h1><p>' + project.description + '</p></div></section>' +
+                '<section class="section project-overview"><div class="container detail-grid"><div><img class="detail-image" src="' + project.image + '" alt="' + project.name + ' software interface preview"></div><div class="detail"><span class="tag">' + project.type + '</span><h1>' + project.name + '</h1><p class="section-intro">' + project.description + '</p><div class="price">' + ProjectHub.formatPrice(project.price) + '</div><div class="button-row"><a class="button button-primary" id="get-project" href="#">Get Project on WhatsApp</a><a class="button button-outline" href="contact.html">Ask a question</a></div><h2>What it includes</h2><ul class="check-list">' + checkList(project.included) + '</ul></div></div></section>' +
+                '<section class="section detail-sections"><div class="container detail-grid"><div><span class="eyebrow">Built with</span><h2>Technologies</h2><div class="tags">' + project.technologies.map((technology) => '<span class="tag">' + technology + '</span>').join("") + '</div></div><div><span class="eyebrow">Inside the project</span><h2>Features</h2><ul class="check-list">' + checkList(project.features) + '</ul></div></div></section>' +
+                '<section class="section"><div class="container faq-list"><span class="eyebrow">Project questions</span><h2>Before you get started</h2>' + project.faq.map((item) => '<details class="faq-item"><summary>' + item.question + '</summary><p>' + item.answer + '</p></details>').join("") + '</div></section>';
+
+            const getProject = document.querySelector("#get-project");
+            getProject.href = ProjectHub.waUrl(ProjectHub.projectMessage(project));
+            getProject.target = "_blank";
+            getProject.rel = "noreferrer";
+
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                name: project.name,
+                description: project.description,
+                image: new URL(project.image, location.href).href,
+                offers: project.price ? { "@type": "Offer", price: project.price, priceCurrency: "INR" } : undefined
+            };
+            const script = document.createElement("script");
+            script.type = "application/ld+json";
+            script.textContent = JSON.stringify(structuredData);
+            document.head.appendChild(script);
+        }
+    </script>
+</body>
+</html>
+
