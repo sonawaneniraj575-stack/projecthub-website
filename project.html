@@ -32,8 +32,9 @@
             item.name.trim().toLowerCase() === requestedId.trim().toLowerCase()
         );
 
-        const checkIcon = '<svg class="check-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15.5 6.5"></path></svg>';
-        const checkList = (items) => items.map((item) => '<li>' + checkIcon + '<span>' + item + '</span></li>').join("");
+        const safeArray = (value) => Array.isArray(value) ? value : [];
+        const checkIcon = '<svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 10.5 3.2 3.2L15.5 6.5"></path></svg>';
+        const checkList = (items) => safeArray(items).map((item) => '<li>' + checkIcon + '<span>' + item + '</span></li>').join("");
 
         if (!project) {
             root.innerHTML = '<section class="section"><div class="container empty"><h1>Project not found</h1><p>The project may have been removed or the link is incorrect.</p><a class="button button-primary" href="projects.html">Explore Projects</a></div></section>';
@@ -45,8 +46,8 @@
             root.innerHTML =
                 '<section class="page-hero"><div class="container"><span class="eyebrow">' + project.category + ' · ' + project.type + '</span><h1>' + project.name + '</h1><p>' + project.description + '</p></div></section>' +
                 '<section class="section project-overview"><div class="container detail-grid"><div><img class="detail-image" src="' + project.image + '" alt="' + project.name + ' software interface preview"></div><div class="detail"><span class="tag">' + project.type + '</span><h1>' + project.name + '</h1><p class="section-intro">' + project.description + '</p><div class="price">' + ProjectHub.formatPrice(project.price) + '</div><div class="button-row"><a class="button button-primary" id="get-project" href="#">Get Project on WhatsApp</a><a class="button button-outline" href="contact.html">Ask a question</a></div><h2>What it includes</h2><ul class="check-list">' + checkList(project.included) + '</ul></div></div></section>' +
-                '<section class="section detail-sections"><div class="container detail-grid"><div><span class="eyebrow">Built with</span><h2>Technologies</h2><div class="tags">' + project.technologies.map((technology) => '<span class="tag">' + technology + '</span>').join("") + '</div></div><div><span class="eyebrow">Inside the project</span><h2>Features</h2><ul class="check-list">' + checkList(project.features) + '</ul></div></div></section>' +
-                '<section class="section"><div class="container faq-list"><span class="eyebrow">Project questions</span><h2>Before you get started</h2>' + project.faq.map((item) => '<details class="faq-item"><summary>' + item.question + '</summary><p>' + item.answer + '</p></details>').join("") + '</div></section>';
+                '<section class="section detail-sections"><div class="container detail-grid"><div><span class="eyebrow">Built with</span><h2>Technologies</h2><div class="tags">' + safeArray(project.technologies).map((technology) => '<span class="tag">' + technology + '</span>').join("") + '</div></div><div><span class="eyebrow">Inside the project</span><h2>Features</h2><ul class="check-list">' + checkList(project.features) + '</ul></div></div></section>' +
+                '<section class="section"><div class="container faq-list"><span class="eyebrow">Project questions</span><h2>Before you get started</h2>' + safeArray(project.faq).map((item) => '<details class="faq-item"><summary>' + item.question + '</summary><p>' + item.answer + '</p></details>').join("") + '</div></section>';
 
             const getProject = document.querySelector("#get-project");
             getProject.href = ProjectHub.waUrl(ProjectHub.projectMessage(project));
@@ -69,4 +70,10 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
 
