@@ -13,7 +13,7 @@
   document.querySelector("#site-footer").innerHTML = footer;
   document.querySelectorAll('link[rel="icon"]').forEach((link) => { link.href = "logo.svg"; link.type = "image/svg+xml"; });
   document.querySelectorAll(".config-whatsapp,.nav-whatsapp,.floating-wa").forEach((el) => { el.href = waUrl(genericMessage); el.target = "_blank"; el.rel = "noreferrer"; });
-  document.querySelectorAll(".config-email").forEach((el) => { el.href = `mailto:${cfg.email}`; el.textContent = el.textContent === "Email" ? cfg.email : el.textContent; });
+  document.querySelectorAll(".config-email").forEach((el) => { el.href = `mailto:${cfg.email}`; el.textContent = cfg.email; });
   document.querySelectorAll(".config-instagram").forEach((el) => { el.href = cfg.instagram; });
   const menu = document.querySelector(".menu-button"), links = document.querySelector(".nav-links");
   menu.addEventListener("click", () => { const open = links.classList.toggle("open"); menu.setAttribute("aria-expanded", String(open)); menu.setAttribute("aria-label", open ? "Close menu" : "Open menu"); });
@@ -23,4 +23,3 @@
   if ("IntersectionObserver" in window) { const observer = new IntersectionObserver((entries, obs) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); } }), { rootMargin: "0px 0px -8% 0px" }); document.querySelectorAll(".reveal-on-scroll").forEach((el) => observer.observe(el)); } else document.querySelectorAll(".reveal-on-scroll").forEach((el) => el.classList.add("is-visible"));
   window.ProjectHub = { waUrl, projectMessage, formatPrice };
 })();
-
