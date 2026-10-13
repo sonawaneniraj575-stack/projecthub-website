@@ -5,6 +5,7 @@
   const waUrl = (message) => `https://wa.me/${cfg.whatsappNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
   const genericMessage = "Hi ProjectHub 👋\nI'd like to know more about your projects.";
   const formatPrice = (price) => price ? new Intl.NumberFormat("en-IN", { style: "currency", currency: cfg.currency, maximumFractionDigits: 0 }).format(price) : "Custom quote";
+  const priceMarkup = (project) => project.price ? `<span class="sale-label">${project.discountLabel || "Sale"}</span><span class="sale-prices"><del>${formatPrice(project.originalPrice || project.price)}</del><strong>${formatPrice(project.price)}</strong><span class="discount">${project.discountPercentage || 0}% OFF</span></span>` : "Custom quote";
   const projectMessage = (p) => `Hi ProjectHub 👋\n\nI'm interested in this project:\n\nProject: ${p.name}\nCategory: ${p.category}\nPrice: ${p.price ? formatPrice(p.price) : "Custom quote"}\n\nI'd like to know more about the project, what is included, and the next steps.`;
   const brand = '<img class="brand-logo" src="logo.svg" alt="" aria-hidden="true"><span>Project<span>Hub</span></span>';
   const header = `<header class="site-header"><div class="container nav"><a class="logo" href="index.html" aria-label="ProjectHub home">${brand}</a><button class="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">☰</button><nav class="nav-links" id="primary-navigation">${navItems.map(([href, label, key]) => `<a href="${href}" class="${page === key ? "active" : ""}">${label}</a>`).join("")}<a class="nav-whatsapp" href="#">WhatsApp</a><a class="button button-primary" href="projects.html">Explore Projects <span>↗</span></a></nav></div></header>`;
@@ -21,5 +22,5 @@
   const headerEl = document.querySelector(".site-header"), onScroll = () => headerEl.classList.toggle("scrolled", window.scrollY > 12);
   onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
   if ("IntersectionObserver" in window) { const observer = new IntersectionObserver((entries, obs) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); } }), { rootMargin: "0px 0px -8% 0px" }); document.querySelectorAll(".reveal-on-scroll").forEach((el) => observer.observe(el)); } else document.querySelectorAll(".reveal-on-scroll").forEach((el) => el.classList.add("is-visible"));
-  window.ProjectHub = { waUrl, projectMessage, formatPrice };
+  window.ProjectHub = { waUrl, projectMessage, formatPrice, priceMarkup };
 })();
