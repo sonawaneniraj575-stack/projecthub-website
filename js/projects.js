@@ -103,7 +103,7 @@ const PROJECTS = [
       "Privacy-conscious contact handling"
     ],
     image: "assets/projects/campusfind.webp",
-    featured: true,
+    featured: false,
     included: [
       "Full-stack source code",
       "Database schema and migrations",
@@ -402,7 +402,7 @@ const PROJECTS = [
       "Printable project summary"
     ],
     image: "assets/projects/projectmanager.webp",
-    featured: true,
+    featured: false,
     included: [
       "Full-stack application source code",
       "Database schema and migrations",
@@ -461,7 +461,7 @@ const PROJECTS = [
       "CSV expense export"
     ],
     image: "assets/projects/studentspend.webp",
-    featured: true,
+    featured: false,
     included: [
       "Full-stack application source code",
       "Database schema and migrations",
@@ -702,7 +702,7 @@ const PROJECTS = [
     seoDescription: "Beginner-friendly Python and Streamlit mini project that predicts iris species from sepal and petal measurements.",
     seoKeywords: ["iris flower classifier project", "beginner machine learning project", "Scikit-learn mini project"],
     geo: { region: "India", audience: "college students and aspiring developers", delivery: "local project setup" },
-    featured: true,
+    featured: false,
     included: ["Source code", "Dataset/model training files", "Installation and run guide", "Project report", "Viva questions"],
     faq: [
       { question: "Which dataset does it use?", answer: "The project can use Scikit-learn's built-in Iris dataset." },
@@ -802,7 +802,7 @@ const PROJECTS = [
     seoDescription: "Python and Streamlit mini project for classifying entered reviews as positive or negative with a local NLP model.",
     seoKeywords: ["sentiment analysis project", "review classifier mini project", "Python NLP project"],
     geo: { region: "India", audience: "college students and aspiring developers", delivery: "local project setup" },
-    featured: true,
+    featured: false,
     included: ["Source code", "Labeled dataset or setup guide", "Installation and run guide", "Project report", "Viva questions"],
     faq: [
       { question: "Can the model understand every review?", answer: "No. Sarcasm, ambiguous wording, and unseen language can lead to incorrect predictions." },
