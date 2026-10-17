@@ -39,8 +39,13 @@
         if (!project) {
             root.innerHTML = '<section class="section"><div class="container empty"><h1>Project not found</h1><p>The project may have been removed or the link is incorrect.</p><a class="button button-primary" href="projects.html">Explore Projects</a></div></section>';
         } else {
-            document.title = project.name + " | ProjectHub";
-            document.querySelector('meta[name="description"]').content = project.description;
+            document.title = (project.seoTitle || project.name) + " | ProjectHub";
+            document.querySelector('meta[name="description"]').content = project.seoDescription || project.description;
+            const keywords = document.querySelector('meta[name="keywords"]') || document.head.appendChild(Object.assign(document.createElement("meta"), { name: "keywords" }));
+            keywords.content = (project.seoKeywords || []).join(", ");
+            document.querySelector('meta[property="og:title"]').content = document.title;
+            document.querySelector('meta[property="og:description"]').content = project.seoDescription || project.description;
+            document.querySelector('meta[property="og:image"]').content = new URL(project.image, location.href).href;
             document.querySelector('link[rel="canonical"]').href = "https://projecthub.studio/project.html?id=" + project.id;
 
             root.innerHTML =
@@ -49,6 +54,8 @@
                 '<section class="section detail-sections"><div class="container detail-grid"><div><span class="eyebrow">Built with</span><h2>Technologies</h2><div class="tags">' + safeArray(project.technologies).map((technology) => '<span class="tag">' + technology + '</span>').join("") + '</div></div><div><span class="eyebrow">Inside the project</span><h2>Features</h2><ul class="check-list">' + checkList(project.features) + '</ul></div></div></section>' +
                 '<section class="section"><div class="container faq-list"><span class="eyebrow">Project questions</span><h2>Before you get started</h2>' + safeArray(project.faq).map((item) => '<details class="faq-item"><summary>' + item.question + '</summary><p>' + item.answer + '</p></details>').join("") + '</div></section>';
 
+            const renderedImage = root.querySelector(".detail-image");
+            if (renderedImage) renderedImage.alt = project.imageAlt || project.name + " software interface preview";
             const getProject = document.querySelector("#get-project");
             getProject.href = ProjectHub.waUrl(ProjectHub.projectMessage(project));
             getProject.target = "_blank";
@@ -60,6 +67,9 @@
                 name: project.name,
                 description: project.description,
                 image: new URL(project.image, location.href).href,
+                keywords: (project.seoKeywords || []).join(", "),
+                areaServed: { "@type": "Country", name: project.geo?.region || "India" },
+                audience: { "@type": "Audience", audienceType: project.geo?.audience || "college students and aspiring developers" },
                 offers: project.price ? { "@type": "Offer", price: project.price, priceCurrency: "INR" } : undefined
             };
             const script = document.createElement("script");
@@ -70,8 +80,6 @@
     </script>
 </body>
 </html>
-
-
 
 
 
