@@ -5,7 +5,20 @@
   const waUrl = (message) => `https://wa.me/${cfg.whatsappNumber.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
   const genericMessage = "Hi ProjectHub 👋\nI'd like to know more about your projects.";
   const formatPrice = (price) => price ? new Intl.NumberFormat("en-IN", { style: "currency", currency: cfg.currency, maximumFractionDigits: 0 }).format(price) : "Custom quote";
-  const priceMarkup = (project) => project.price ? `<span class="sale-label">${project.discountLabel || "Sale"}</span><span class="sale-prices"><del>${formatPrice(project.originalPrice || project.price)}</del><strong>${formatPrice(project.price)}</strong><span class="discount">${project.discountPercentage || 0}% OFF</span></span>` : "Custom quote";
+  const priceMarkup = (project) => {
+    if (!project.price) return '<span class="price-custom">Custom quote</span>';
+    return `<div class="sale-price-block"><div class="sale-prices"><strong class="current-price">${formatPrice(project.price)}</strong>${project.originalPrice ? `<del class="original-price">${formatPrice(project.originalPrice)}</del>` : ""}${project.discountPercentage ? `<span class="discount-pill">${project.discountPercentage}% OFF</span>` : ""}</div>${project.discountLabel ? `<span class="sale-sublabel">${project.discountLabel}</span>` : ""}</div>`;
+  };
+
+  const cardMarkup = (p) => {
+    const isMini = p.type === "Mini Project";
+    const dotClass = isMini ? "badge-dot-mini" : "badge-dot-fullstack";
+    const techs = Array.isArray(p.technologies) ? p.technologies : [];
+    const shownTechs = techs.slice(0, 3);
+    const extraTech = techs.length > 3 ? techs.length - 3 : 0;
+
+    return `<article class="project-card" data-id="${p.id}"><div class="project-image-wrap"><img class="project-image" src="${p.image}" alt="${p.imageAlt || p.name + ' preview'}" loading="lazy"><div class="card-badges"><span class="badge-type"><span class="badge-dot ${dotClass}"></span>${p.type || "Full Stack"}</span>${p.featured ? '<span class="badge-featured"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Featured</span>' : ''}</div></div><div class="card-content"><div class="card-header"><span class="card-category">${p.category}</span><h3 class="card-title"><a href="project.html?id=${p.id}" title="${p.name}">${p.name}</a></h3></div><p class="card-description">${p.description}</p><div class="card-tech-stack">${shownTechs.map(t => `<span class="tech-pill">${t}</span>`).join("")}${extraTech > 0 ? `<span class="tech-pill tech-pill-more">+${extraTech}</span>` : ""}</div><div class="card-footer"><div class="price-container">${priceMarkup(p)}</div><a class="card-action-btn" href="project.html?id=${p.id}" aria-label="View details for ${p.name}"><span>Details</span><svg class="arrow-icon" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div></div></article>`;
+  };
   const projectMessage = (p) => `Hi ProjectHub 👋\n\nI'm interested in this project:\n\nProject: ${p.name}\nCategory: ${p.category}\nPrice: ${p.price ? formatPrice(p.price) : "Custom quote"}\n\nI'd like to know more about the project, what is included, and the next steps.`;
   const brand = '<img class="brand-logo" src="logo.svg" alt="" aria-hidden="true"><span>Project<span>Hub</span></span>';
   const header = `<header class="site-header"><div class="container nav"><a class="logo" href="index.html" aria-label="ProjectHub home">${brand}</a><button class="menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-navigation">☰</button><nav class="nav-links" id="primary-navigation">${navItems.map(([href, label, key]) => `<a href="${href}" class="${page === key ? "active" : ""}">${label}</a>`).join("")}<a class="nav-whatsapp" href="#">WhatsApp</a><a class="button button-primary" href="projects.html">Explore Projects <span>↗</span></a></nav></div></header>`;
@@ -22,5 +35,5 @@
   const headerEl = document.querySelector(".site-header"), onScroll = () => headerEl.classList.toggle("scrolled", window.scrollY > 12);
   onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
   if ("IntersectionObserver" in window) { const observer = new IntersectionObserver((entries, obs) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); obs.unobserve(entry.target); } }), { rootMargin: "0px 0px -8% 0px" }); document.querySelectorAll(".reveal-on-scroll").forEach((el) => observer.observe(el)); } else document.querySelectorAll(".reveal-on-scroll").forEach((el) => el.classList.add("is-visible"));
-  window.ProjectHub = { waUrl, projectMessage, formatPrice, priceMarkup };
+  window.ProjectHub = { waUrl, projectMessage, formatPrice, priceMarkup, cardMarkup };
 })();
